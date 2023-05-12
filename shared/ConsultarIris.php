@@ -577,6 +577,27 @@ class ConsultarIris
         return $this->obtenerTerritorios("/$provincia_id/cantones/$canton_id/distritos", $get_como_json);
     }
 
+    private function listar(string $ruta, array $filtros = []): array
+    {
+        $fields = "";
+        if (false === empty($filtros)) {
+            $fields = "?";
+            foreach ($filtros as $key => $filtro) {
+                $fields .= "$key=" . urlencode($filtro);
+                $fields .= "&";
+            }
+            $fields = rtrim($fields, "&");
+        }
+
+        $arr = $this->run("/v1/$ruta", 'GET', null, null, $fields);
+
+        if (1 === $arr["status"]) {
+            $arr["message"] = $arr["message"][$ruta];
+        }
+
+        return $arr;
+    }
+
     /**
      * Retorna un array con la información de los paquetes.
      *
@@ -597,17 +618,7 @@ class ConsultarIris
      */
     public function listarPaquetes(array $filtros = []): array
     {
-        $fields = "";
-        if (false === empty($filtros)) {
-            $fields = "?";
-            foreach ($filtros as $key => $filtro) {
-                $fields .= "$key=" . urlencode($filtro);
-                $fields .= "&";
-            }
-            $fields = rtrim($fields, "&");
-        }
-
-        return $this->run("/v1/paquetes", 'GET', null, null, $fields);
+        return $this->listar("paquetes", $filtros);
     }
 
     /**
@@ -627,17 +638,7 @@ class ConsultarIris
      */
     public function listarDirecciones(array $filtros = []): array
     {
-        $fields = "";
-        if (false === empty($filtros)) {
-            $fields = "?";
-            foreach ($filtros as $key => $filtro) {
-                $fields .= "$key=" . urlencode($filtro);
-                $fields .= "&";
-            }
-            $fields = rtrim($fields, "&");
-        }
-
-        return $this->run("/v1/direcciones", 'GET', null, null, $fields);
+        return $this->listar("direcciones", $filtros);
     }
 
 }
