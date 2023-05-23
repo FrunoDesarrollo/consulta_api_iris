@@ -589,13 +589,7 @@ class ConsultarIris
             $fields = rtrim($fields, "&");
         }
 
-        $arr = $this->run("/v1/$ruta", 'GET', null, null, $fields);
-
-        if (1 === $arr["status"]) {
-            $arr["message"] = $arr["message"][$ruta];
-        }
-
-        return $arr;
+        return $this->run("/v1/$ruta", 'GET', null, null, $fields);
     }
 
     /**
