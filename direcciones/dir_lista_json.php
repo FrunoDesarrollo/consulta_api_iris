@@ -27,17 +27,19 @@ if (0 === $lista_direcciones["status"]) {
 
 // Imprimir el resultado:
             $sin_paginacion = false;
-
+echo '[';
+$flag = "";
             while (false === $sin_paginacion) {
 
                 if (isset($lista_direcciones['message']['página'])) {
 
-                    echo json_encode($lista_direcciones['message']['direcciones'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION | JSON_NUMERIC_CHECK);
-
-                    echo ',';
+                    foreach($lista_direcciones['message']['direcciones'] as $dir){
+                        echo $flag . json_encode($dir, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION | JSON_NUMERIC_CHECK);
+                        $flag = ",";
+                    }
 
                     // Cuota de tiempo para que no se active el "rate limit" de Iris:
-                    sleep(4);
+                    sleep(2);
 
                     $lista_direcciones = $api_iris->listarDirecciones(["pág_despues_de" => $lista_direcciones['message']['página']]);
 
@@ -52,6 +54,10 @@ if (0 === $lista_direcciones["status"]) {
                 } else {
                     $sin_paginacion = true;
 
-                    echo json_encode($lista_direcciones['message']['direcciones'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION | JSON_NUMERIC_CHECK);
+                    foreach($lista_direcciones['message']['direcciones'] as $dir){
+                        echo $flag . json_encode($dir, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION | JSON_NUMERIC_CHECK);
+                        $flag = ",";
+                    }
                 }
             }
+echo ']';
