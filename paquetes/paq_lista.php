@@ -10,18 +10,20 @@ $guia_url = $configuracion_iris["iris_api"][$consultar_lugar[0]]["link_busqueda"
 
 function formatoPagina(array &$i, string $guia_url): void
 {
-    unset($i["creado_por_usuario_correo"], $i["id_contrato"], $i["id_dirección_fuente"], $i["id_dirección_destino"]);
+    if (false === empty($i)) {
+        unset($i["creado_por_usuario_correo"], $i["id_contrato"], $i["id_dirección_fuente"], $i["id_dirección_destino"]);
 
-    $i["guía"] = "<a href='$guia_url{$i["guía"]}' target='_blank'><b>{$i["guía"]}</b></a>";
+        $i["guía"] = "<a href='$guia_url{$i["guía"]}' target='_blank'><b>{$i["guía"]}</b></a>";
 
-    $i["fecha_creación"] = str_ireplace("T", " ", substr($i["fecha_creación"], 0, 19));
-    $i["fecha_recolecta"] = substr((string)$i["fecha_recolecta"], 0, 10);
-    $i["fecha_cedi"] = substr((string)$i["fecha_cedi"], 0, 10);
-    $i["fecha_entrega"] = substr((string)$i["fecha_entrega"], 0, 10);
-    $i["recolecta_estimada_a"] = substr((string)$i["recolecta_estimada_a"], 0, 10);
-    $i["recolecta_estimada_b"] = substr((string)$i["recolecta_estimada_b"], 0, 10);
-    $i["entrega_estimada_a"] = substr((string)$i["entrega_estimada_a"], 0, 10);
-    $i["entrega_estimada_b"] = substr((string)$i["entrega_estimada_b"], 0, 10);
+        $i["fecha_creación"] = str_ireplace("T", " ", substr($i["fecha_creación"], 0, 19));
+        $i["fecha_recolecta"] = substr((string)$i["fecha_recolecta"], 0, 10);
+        $i["fecha_cedi"] = substr((string)$i["fecha_cedi"], 0, 10);
+        $i["fecha_entrega"] = substr((string)$i["fecha_entrega"], 0, 10);
+        $i["recolecta_estimada_a"] = substr((string)$i["recolecta_estimada_a"], 0, 10);
+        $i["recolecta_estimada_b"] = substr((string)$i["recolecta_estimada_b"], 0, 10);
+        $i["entrega_estimada_a"] = substr((string)$i["entrega_estimada_a"], 0, 10);
+        $i["entrega_estimada_b"] = substr((string)$i["entrega_estimada_b"], 0, 10);
+    }
 }
 
 
@@ -80,7 +82,7 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR 
                     }
 
                     // Cuota de tiempo para que no se active el "rate limit" de Iris:
-                    sleep(10);
+                    sleep(5);
 
                     // TODO: Le estamos indicando que solo traiga la lista de los paquetes que se han creado hoy:
                     $lista_paquetes = $api_iris->listarPaquetes(["fecha" => $fecha_de_hoy, "pág_despues_de" => $lista_paquetes['message']['página']]);

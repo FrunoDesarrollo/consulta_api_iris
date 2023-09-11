@@ -6,10 +6,11 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR 
 
 function formatoPagina(array &$i): void
 {
-    unset($i["creado_por_usuario_correo"]);
-    $i["id"] = '<span style="font-weight: 700;">' . $i["id"] . '</span>';
-
-    $i["fecha_creación"] = str_ireplace("T", " ", substr($i["fecha_creación"], 0, 19));
+    if (false === empty($i)) {
+        unset($i["creado_por_usuario_correo"]);
+        $i["id"] = '<span style="font-weight: 700;">' . $i["id"] . '</span>';
+        $i["fecha_creación"] = str_ireplace("T", " ", substr($i["fecha_creación"], 0, 19));
+    }
 }
 
 // Le indicamos los parámetros de a dónde se va a realizar la consulta.
@@ -49,8 +50,8 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR 
 
                 if (isset($lista_direcciones['message']['página'])) {
 
-                    if (false === empty($lista_direcciones['message']['paquetes'])) {
-                        foreach ($lista_direcciones['message']['paquetes'] as $i) {
+                    if (false === empty($lista_direcciones['message']['direcciones'])) {
+                        foreach ($lista_direcciones['message']['direcciones'] as $i) {
                             formatoPagina($i);
                             pretty_print($i);
                             echo "<hr>";
@@ -65,7 +66,7 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR 
                     }
 
                     // Cuota de tiempo para que no se active el "rate limit" de Iris:
-                    sleep(10);
+                    sleep(5);
 
                     $lista_direcciones = $api_iris->listarDirecciones(["pág_despues_de" => $lista_direcciones['message']['página']]);
 
