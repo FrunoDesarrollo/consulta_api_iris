@@ -35,6 +35,24 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'includ
                     </li>
                     <li class="list-group-item"><a href="./paquetes/paq_lista.php" target="_blank">Lista de paquetes</a>
                         <small>Para el ejemplo solo imprime los paquetes creados el día de hoy.</small></li>
+                    <li class="list-group-item">Consultar gu&iacute;a:
+
+                        <div class="row">
+                            <label for="inputGuia" class="visually-hidden">Gu&iacute;a</label>
+                            <div class="col-sm-10">
+                                <form method="get" action="./paquetes/paq_consulta.php" target="_blank"
+                                      class="row g-2 w-75 ms-4">
+                                    <div class="col-auto">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="inputGuia"
+                                                   placeholder="Gu&iacute;a" name="guia" required>
+                                            <button type="submit" class="btn btn-outline-secondary">Consultar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </li>
         </ul>
