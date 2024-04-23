@@ -23,6 +23,22 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'includ
                     </li>
                     <li class="list-group-item"><a href="./direcciones/dir_lista.php" target="_blank">Lista de
                             direcciones</a></li>
+					<li class="list-group-item">Consultar direcci&oacute;n:
+
+                        <div class="row">
+                            <label for="inputGuia" class="visually-hidden">Direcci&oacute;n</label>
+                            <div class="col-sm-10">
+                                <form method="get" action="./direcciones/dir_consulta.php" target="_blank" class="row g-2 w-75 ms-4">
+                                    <div class="col-12 col-md-7">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="inputDir" placeholder="Direcci&oacute;n" name="dir" required="">
+                                            <button type="submit" class="btn btn-outline-secondary">Consultar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </li>
             <li class="list-group-item">Paquetes

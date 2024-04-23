@@ -1,0 +1,17 @@
+.idea
+.git
+.DS_Store
+composer.phar
+composer.lock
+vendor/*
+.vscode
+nbproject
+psalm.xml
+phpunit.xml
+/storage/logs/ifrpro_api/*
+/storage/logs/ifrpro/*
+/storage/logs/ifrpro_web/*
+!/storage/logs/ifrpro_api/.gitignore
+!/storage/logs/ifrpro/.gitignore
+!/storage/logs/ifrpro_web/.gitignore
+.phpunit.result.cache
