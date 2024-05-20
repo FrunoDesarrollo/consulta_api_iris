@@ -26,13 +26,29 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'includ
 					<li class="list-group-item">Consultar direcci&oacute;n:
 
                         <div class="row">
-                            <label for="inputGuia" class="visually-hidden">Direcci&oacute;n</label>
+                            <label for="txtConsultaDir" class="visually-hidden">Direcci&oacute;n</label>
                             <div class="col-sm-10">
                                 <form method="get" action="./direcciones/dir_consulta.php" target="_blank" class="row g-2 w-75 ms-4">
                                     <div class="col-12 col-md-7">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="inputDir" placeholder="Direcci&oacute;n" name="dir" required="">
+                                            <input type="text" id="txtConsultaDir" class="form-control" placeholder="Direcci&oacute;n" name="dir" required="">
                                             <button type="submit" class="btn btn-outline-secondary">Consultar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+					<li class="list-group-item">Borrar direcci&oacute;n:
+
+                        <div class="row">
+                            <label for="txtBorrarDir" class="visually-hidden">Direcci&oacute;n</label>
+                            <div class="col-sm-10">
+                                <form method="get" action="./direcciones/dir_borrar.php" target="_blank" class="row g-2 w-75 ms-4">
+                                    <div class="col-12 col-md-7">
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="txtBorrarDir" class="form-control" placeholder="Direcci&oacute;n" name="dir" required="">
+                                            <button type="submit" class="btn btn-outline-secondary">Borrar</button>
                                         </div>
                                     </div>
                                 </form>
