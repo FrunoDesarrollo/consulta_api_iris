@@ -10,15 +10,6 @@ $api_iris->set("CR", "organizacion_1");
 
 //TODO: se pasa el código del distrito llamado "Santa Eulalia" (20507).
 $codigo_distrito = "20507";
-
-
-// TODO: La siguiente función es para que el nombre de la tienda sea diferente cada vez que se accede a esta página. Solo es para la demostración.
-function str_rand(int $length = 10): string
-{
-    $length = ($length < 4) ? 4 : $length;
-    return bin2hex(random_bytes(($length - ($length % 2)) / 2));
-}
-
 $random = str_rand();
 
 
@@ -47,6 +38,15 @@ if (null !== $api_iris->log) {
 
 if (0 === $laDireccion["status"]) {
     die("No fue posible realizar la acción solicitada - {$laDireccion["message"]}");
+}
+
+
+
+// TODO: La siguiente función es para que el nombre de la tienda sea diferente cada vez que se accede a esta página. Solo es para la demostración.
+function str_rand(int $length = 10): string
+{
+    $length = ($length < 4) ? 4 : $length;
+    return bin2hex(random_bytes(($length - ($length % 2)) / 2));
 }
 
 // Imprimir el resultado:

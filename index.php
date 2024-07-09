@@ -19,19 +19,31 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'includ
             </li>
             <li class="list-group-item">Direcciones
                 <ul class="list-group list-group-flush list-group-numbered">
-                    <li class="list-group-item"><a href="./direcciones/dir_crear.php" target="_blank">Crear direcci&oacute;n</a>
+                    <li class="list-group-item">
+                        <a href="./direcciones/dir_crear.php" target="_blank">Crear direcci&oacute;n</a>
                     </li>
-                    <li class="list-group-item"><a href="./direcciones/dir_lista.php" target="_blank">Lista de
-                            direcciones</a></li>
-					<li class="list-group-item">Consultar direcci&oacute;n:
+                    <li class="list-group-item">
+                        Lista de direcciones:
+                        <ul class="list-group list-group-flush list-group-numbered">
+                            <li class="list-group-item">
+                                <a href="./direcciones/dir_lista.php" target="_blank">Versión Web</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="./direcciones/dir_lista_json.php" target="_blank">Versión Json</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">Consultar direcci&oacute;n:
 
                         <div class="row">
                             <label for="txtConsultaDir" class="visually-hidden">Direcci&oacute;n</label>
                             <div class="col-sm-10">
-                                <form method="get" action="./direcciones/dir_consulta.php" target="_blank" class="row g-2 w-75 ms-4">
+                                <form method="get" action="./direcciones/dir_consulta.php" target="_blank"
+                                      class="row g-2 w-75 ms-4">
                                     <div class="col-12 col-md-7">
                                         <div class="input-group mb-3">
-                                            <input type="text" id="txtConsultaDir" class="form-control" placeholder="Direcci&oacute;n" name="dir" required="">
+                                            <input type="text" id="txtConsultaDir" class="form-control"
+                                                   placeholder="Direcci&oacute;n" name="dir" required="">
                                             <button type="submit" class="btn btn-outline-secondary">Consultar</button>
                                         </div>
                                     </div>
@@ -39,21 +51,27 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'includ
                             </div>
                         </div>
                     </li>
-					<li class="list-group-item">Borrar direcci&oacute;n:
+                    <li class="list-group-item">Borrar direcci&oacute;n:
 
                         <div class="row">
                             <label for="txtBorrarDir" class="visually-hidden">Direcci&oacute;n</label>
                             <div class="col-sm-10">
-                                <form method="get" action="./direcciones/dir_borrar.php" target="_blank" class="row g-2 w-75 ms-4">
+                                <form method="get" action="./direcciones/dir_borrar.php" target="_blank"
+                                      class="row g-2 w-75 ms-4">
                                     <div class="col-12 col-md-7">
                                         <div class="input-group mb-3">
-                                            <input type="text" id="txtBorrarDir" class="form-control" placeholder="Direcci&oacute;n" name="dir" required="">
+                                            <input type="text" id="txtBorrarDir" class="form-control"
+                                                   placeholder="Direcci&oacute;n" name="dir" required="">
                                             <button type="submit" class="btn btn-outline-secondary">Borrar</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="./direcciones/dir_trasladar.php" target="_blank">Copiar todas las direcciones de
+                            "organizacion_1" a "organizacion_2".</a>
                     </li>
                 </ul>
             </li>
