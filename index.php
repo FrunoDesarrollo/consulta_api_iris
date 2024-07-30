@@ -73,6 +73,9 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'includ
                         <a href="./direcciones/dir_trasladar.php" target="_blank">Copiar todas las direcciones de
                             "organizacion_1" a "organizacion_2".</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="./direcciones/cambiar_direccion.php" target="_blank">Cambiar direcci&oacute;n.</a>
+                    </li>
                 </ul>
             </li>
             <li class="list-group-item">Paquetes

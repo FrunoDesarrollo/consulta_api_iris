@@ -67,3 +67,25 @@ function pretty_print(mixed $value, bool $is_child = false): void
         echo '</tbody></table>';
     }
 }
+
+
+/**
+ * @param string $value
+ * @return string
+ * @see https://stackoverflow.com/a/76461504
+ */
+function sanitizeFilterString(string $value): string
+{
+    // Strip the tags
+    $value = strip_tags($value);
+
+    // Run the replacement for FILTER_SANITIZE_STRING
+    $value = htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE);
+
+    // Fix that HTML entities are converted to entity numbers instead of entity name (e.g. ' -> &#34; and not ' -> &quote;)
+    // https://stackoverflow.com/questions/64083440/use-php-htmlentities-to-convert-special-characters-to-their-entity-number-rather
+    $value = str_replace(["&quot;", "&#039;"], ["&#34;", "&#39;"], $value);
+
+    // Decode all entities
+    return html_entity_decode($value, ENT_NOQUOTES | ENT_SUBSTITUTE);
+}
