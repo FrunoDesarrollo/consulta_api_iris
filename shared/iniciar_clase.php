@@ -31,10 +31,18 @@ $api_iris = new ConsultarIris($configuracion_iris["iris_api"], $configuracion_ir
 // La siguiente función es para la demostración.
 function pretty_print(mixed $value, bool $is_child = false): void
 {
+    if (is_bool($value)) {
+        echo (true === $value) ? 'true' : 'false';
+        return;
+    }
+
     if (is_string($value)) {
         echo '<head><meta charset="utf-8"><style>body,html,table{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}table{font-size:15px;margin:0;padding:0;border-spacing:0;border-collapse:collapse;background:#fff}td,th{border:1px solid #ddd;text-align:left;padding:8px}table tr:nth-child(even){background:#e8e8e8}</style></head><table><tbody><tr><th>'
             . $value . '</th></tbody></table>';
+
+        return;
     }
+
     if (is_object($value)) {
         $value = (array)$value;
     }
@@ -48,13 +56,17 @@ function pretty_print(mixed $value, bool $is_child = false): void
         echo "<table $even><tbody>";
 
         foreach ($value as $key => $val) {
-            if (is_object($val)) {
-                $val = (array)$val;
-            }
-            if (is_string($key)) {
+
+            if (is_string($key) || is_numeric($key)) {
                 echo "<tr><th>$key</th><td>";
             } else {
                 echo "<tr><td>";
+            }
+
+            if (is_bool($val)) {
+                $val = (true === $val ? 'true' : 'false');
+            } elseif (is_object($val)) {
+                $val = (array)$val;
             }
 
             if (is_array($val)) {
@@ -62,6 +74,7 @@ function pretty_print(mixed $value, bool $is_child = false): void
             } else {
                 echo $val;
             }
+
             echo '</td></tr>';
         }
         echo '</tbody></table>';
