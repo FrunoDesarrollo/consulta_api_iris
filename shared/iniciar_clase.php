@@ -9,6 +9,7 @@ use IFR\Logistica\ConsultarIris;
 
 
 require __DIR__ . DIRECTORY_SEPARATOR . 'ConsultarIris.php';
+require __DIR__ . DIRECTORY_SEPARATOR . 'IrisRateLimit.php';
 
 
 /** @var array $configuracion_iris */
@@ -17,7 +18,7 @@ $configuracion_iris = require __DIR__ . DIRECTORY_SEPARATOR . 'configuracion.php
 if ($configuracion_iris["iris_modo_pruebas"]) {
     $debugConfig = [E_ALL, "1"];
 } else {
-    $debugConfig = [0, "0"];
+    $debugConfig = [0, 1];
 }
 
 error_reporting($debugConfig[0]);
