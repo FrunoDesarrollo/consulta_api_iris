@@ -1,12 +1,13 @@
 <?php declare(strict_types=1);
 
-if (!empty($_POST)) {
-
     // Construye la clase ConsultarIris en el objeto $api_iris
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'iniciar_clase.php';
 
     // Le indicamos los parámetros de a dónde se va a realizar la consulta.
     $api_iris->set("CR", "organizacion_1");
+
+
+if (!empty($_POST)) {
 
     $_POST = array_map("sanitizeFilterString", $_POST);
 
@@ -29,12 +30,6 @@ if (!empty($_POST)) {
 $direccion = [];
 
 if (isset($_GET["id_direccion"]) && 1 === preg_match('{^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$}Di', trim($_GET["id_direccion"]))) {
-
-    // Construye la clase ConsultarIris en el objeto $api_iris
-    require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'iniciar_clase.php';
-
-    // Le indicamos los parámetros de a dónde se va a realizar la consulta.
-    $api_iris->set("CR", "organizacion_1");
 
     $direccion = $api_iris->consultarDireccion($_GET["id_direccion"]);
 
