@@ -69,7 +69,7 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR 
             <div class="alert alert-warning d-flex align-items-center" role="alert">
                 <div class="d-flex">
                     <div>
-                        <div class="text-secondary"><?= $direccion["message"] ?? "" ?></div>
+                        <div class="text-secondary"><?= $direccion["code"] . " - " . ($direccion["message"] ?? ""); ?></div>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@ endif; ?>
             <div class="alert alert-warning d-flex align-items-center" role="alert">
                 <div class="d-flex">
                     <div>
-                        <div class="text-secondary"><?= $direccion_cambio["message"] ?? "" ?></div>
+                        <div class="text-secondary"><?= $direccion_cambio["code"] . " - " . ($direccion_cambio["message"] ?? ""); ?></div>
                     </div>
                 </div>
             </div>
