@@ -9,9 +9,9 @@ $api_iris->set("CR", "organizacion_1");
 
 
 // TODO cambiar $id_direccion_fuente y $id_direccion_destino por los datos reales:
-$id_direccion_fuente = "dc4dc30a-966f-4e82-920c-6cd1d649f111";
+$id_direccion_fuente = '';
 
-$id_direccion_destino = "640cb8f4-1eb2-4361-b5f0-2364f8a4a0ff";
+$id_direccion_destino = "cf821259-c372-40c4-91a2-b4d92365df44";
 
 
 $entregar_a = "Scott Hahn";
@@ -29,7 +29,7 @@ $paquete = [
     "id_dirección_fuente" => $id_direccion_fuente,
     "id_dirección_destino" => $id_direccion_destino,
     "descripción" => substr($descripcion_de_paquete, 0, 150),
-    "observaciones" => substr($observaciones_de_paquete, 0, 150), // Cualquier texto que se quiera asociar al paquete.
+    "observaciones" => substr($observaciones_de_paquete, 0, 2000), // Cualquier texto que se quiera asociar al paquete.
     "entregar_a" => substr($entregar_a, 0, 40), // Nombre de la persona que recibe el paquete en la dirección destino.
     "en_nombre_de_correo" => substr($notificar_a, 60), // Correo electrónico de la persona responsable en su empresa de resolver asuntos relacionados con el paquete.
 ];
@@ -47,7 +47,7 @@ if (null !== $api_iris->log) {
 }
 
 if (0 === $elPaquete["status"]) {
-    die("No fue posible realizar la acción solicitada - {$elPaquete["message"]}");
+    die("No fue posible realizar la acción solicitada. {$elPaquete["code"]} - {$elPaquete["message"]}");
 }
 
 // Imprimir el resultado:

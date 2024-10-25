@@ -106,6 +106,24 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'includ
                             </div>
                         </div>
                     </li>
+                    <li class="list-group-item">Cancelar gu&iacute;a:
+
+                        <div class="row">
+                            <label for="inputGuia" class="visually-hidden">Gu&iacute;a</label>
+                            <div class="col-sm-10">
+                                <form method="get" action="./paquetes/paq_cancelar.php" target="_blank"
+                                      class="row g-2 w-75 ms-4">
+                                    <div class="col-auto">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="inputGuia"
+                                                   placeholder="Gu&iacute;a" name="guia" required>
+                                            <button type="submit" class="btn btn-outline-danger">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </li>
         </ul>
