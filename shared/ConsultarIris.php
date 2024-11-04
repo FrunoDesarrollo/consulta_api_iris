@@ -727,12 +727,13 @@ final class ConsultarIris
      * ```
      * @param string $ruta
      * @param bool $get_como_json Default es false.
+     * @param string $query_string
      *
      * @return array <b>array</b>. [ "status" => (int (1 = success, 0 = error)), "message" => (string (json)|array), "code" => (int), "content_type" => (string), "rate_limit"   => (array|null) ]
      */
-    private function obtenerTerritorios(string $ruta, bool $get_como_json = false): array
+    private function obtenerTerritorios(string $ruta, bool $get_como_json = false, string $query_string = ''): array
     {
-        $arr = $this->run("/v1/provincias$ruta");
+        $arr = $this->run("/v1/provincias$ruta", 'GET', null, null, $query_string);
         if (1 === $arr["status"]) {
             $arrLista = array_map(static function ($v) {
                 $v['nombre'] = mb_convert_case($v['nombre'], MB_CASE_TITLE, "UTF-8");
@@ -785,12 +786,18 @@ final class ConsultarIris
      * @param string|int $provincia_id
      * @param string|int $canton_id
      * @param bool $get_como_json Default es false.
+     * @param string $tipo_servicio Opciones: "con-servicio" (default), "sin-servicio", "todos".
      *
      * @return array <b>array</b>. [ "status" => (int (1 = success, 0 = error)), "message" => (string (json)|array), "code" => (int), "content_type" => (string), "rate_limit"   => (array|null) ]
      */
-    public function obtenerDistritos(string|int $provincia_id, string|int $canton_id, bool $get_como_json = false): array
+    public function obtenerDistritos(string|int $provincia_id, string|int $canton_id, bool $get_como_json = false, string $tipo_servicio = ""): array
     {
-        return $this->obtenerTerritorios("/$provincia_id/cantones/$canton_id/distritos", $get_como_json);
+        $incluir = match ($tipo_servicio) {
+            "con-servicio", "sin-servicio", "todos" => true,
+            default => false
+        } ? "?incluir=$tipo_servicio" : "";
+
+        return $this->obtenerTerritorios("/$provincia_id/cantones/$canton_id/distritos", $get_como_json, $incluir);
     }
 
     private function listar(string $ruta, array $filtros = []): array
