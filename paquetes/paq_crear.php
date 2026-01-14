@@ -41,9 +41,9 @@ $elPaquete = $api_iris->crearPaquete($paquete);
 if (null !== $api_iris->log) {
     error_log("Iris, error {$elPaquete["code"]}: $api_iris->log");
 
-    if ($configuracion_iris["iris_modo_pruebas"]) {
-        die($api_iris->log);
-    }
+    var_export($api_iris->log);
+	echo "<BR><BR>";
+	exit;
 }
 
 if (0 === $elPaquete["status"]) {
