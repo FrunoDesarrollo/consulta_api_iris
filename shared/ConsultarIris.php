@@ -238,9 +238,6 @@ final class ConsultarIris
 
     private function validaError400(string $body, array $id_distritos)
     {
-        if (false === $this->MODO_PRUEBAS) {
-            return "Se encontraron datos inválidos";
-        }
 
         $tmp_body = json_decode($body, true);
 
