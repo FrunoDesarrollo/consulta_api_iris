@@ -836,6 +836,23 @@ final class ConsultarIris
     }
 
     /**
+     * Retorna un array con la información de los eventos posibles.
+     *
+     * ```php
+     * //Ejemplo de uso:
+     * $resultado = $api->listarEventosPosibles();
+     * ```
+     *
+     * @return array <b>array</b>. [ "status" => (int (1 = success, 0 = error)), "message" => (array|string), "code" => (int), "content_type" => (string), "rate_limit"   => (array|null) ]
+     * @link https://docs.api.logistica.nargallo.com/#lista-completa-de-eventos-posibles Lista completa de eventos posibles
+     *
+     */
+    public function listarEventosPosibles(): array
+    {
+        return $this->listar("paquetes/tipo_eventos");
+    }
+
+    /**
      * Retorna un array con la información de las direcciones.
      *
      * ```php

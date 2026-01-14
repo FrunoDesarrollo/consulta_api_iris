@@ -111,3 +111,40 @@ function sanitizeFilterString(string $value): string
     // Decode all entities
     return html_entity_decode($value, ENT_NOQUOTES | ENT_SUBSTITUTE);
 }
+
+/**
+ * Genera una tabla Bootstrap 5 dinámica
+ *
+ * @param array<string, string> $columnas ['key' => 'Label']
+ * @param array<int, array<string, mixed>> $datos
+ */
+function renderTable(array $columnas, array $datos, string $claseTabla = 'table-striped table-hover'): string
+{
+    $html = '<table class="table ' . htmlspecialchars($claseTabla) . '">';
+
+    // Encabezados
+    $html .= '<thead class="table-dark"><tr>';
+    foreach ($columnas as $label) {
+        $html .= '<th>' . htmlspecialchars($label) . '</th>';
+    }
+    $html .= '</tr></thead>';
+
+    // Cuerpo
+    $html .= '<tbody>';
+    if (empty($datos)) {
+        $html .= '<tr><td colspan="' . count($columnas) . '" class="text-center text-muted">No hay registros</td></tr>';
+    } else {
+        foreach ($datos as $fila) {
+            $html .= '<tr>';
+            foreach (array_keys($columnas) as $key) {
+                $valor = $fila[$key] ?? '';
+                $html .= '<td>' . htmlspecialchars((string)$valor) . '</td>';
+            }
+            $html .= '</tr>';
+        }
+    }
+    $html .= '</tbody></table>';
+
+    return $html;
+}
+

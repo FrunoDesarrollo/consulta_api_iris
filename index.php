@@ -126,6 +126,12 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'includ
                     </li>
                 </ul>
             </li>
+            <li class="list-group-item">Lista completa de eventos posibles
+                <ul class="list-group list-group-flush list-group-numbered">
+                    <li class="list-group-item"><a href="./paquetes/paq_all_eventos.php" target="_blank">Mostrar eventos posibles</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
