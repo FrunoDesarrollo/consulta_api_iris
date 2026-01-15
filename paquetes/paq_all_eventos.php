@@ -23,9 +23,21 @@ if (0 === $lista_paquetes["status"]) {
     die("No fue posible realizar la acción solicitada - {$lista_paquetes["message"]}");
 }
 
-// Ignorando mayúsculas/minúsculas
-usort($lista_paquetes['message']['tipo_eventos'], fn($a, $b) =>
-strcasecmp($a['nombre'], $b['nombre']) ?: strcasecmp($a['etapa'], $b['etapa'])
+// Agrupar si el núm. id es el mismo para cuando la etapa es diferente. Un solo id, las etapas se concatenan.
+$agrupado = [];
+
+foreach ($lista_paquetes['message']['tipo_eventos'] as $fila) {
+    $clave = $fila['id'] . '-' . $fila['nombre'];
+
+    if (!isset($agrupado[$clave])) {
+        $agrupado[$clave] = $fila;
+    } else {
+        $agrupado[$clave]['etapa'] .= ', ' . $fila['etapa'];
+    }
+}
+
+// Ordenar por nombre y luego por etapa, ignorando mayúsculas/minúsculas
+usort($agrupado, fn($a, $b) => strcasecmp($a['nombre'], $b['nombre']) ?: strcasecmp($a['etapa'], $b['etapa'])
 );
 
 // Imprimir el resultado:
@@ -39,12 +51,12 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR 
             <?php
             $columnas = [
                     'id' => 'ID',
+                    'etapa' => 'Etapa',
                     'nombre' => 'Nombre',
                     'descripcion' => 'Descripción',
-                    'etapa' => 'Etapa',
             ];
 
-            echo renderTable($columnas, $lista_paquetes['message']['tipo_eventos']);
+            echo renderTable($columnas, array_values($agrupado));
             ?>
         </div>
     </div>
