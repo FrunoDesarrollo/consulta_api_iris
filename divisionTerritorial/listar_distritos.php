@@ -8,7 +8,7 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR 
 $api_iris->set("CR", "organizacion_1");
 
 // TODO Le pasamos el id de la provincia. "2" corresponde a la provincia de "Alajuela" y el id del cantón "205" que corresponde a "Atenas".
-$division_territorail_3 = $api_iris->obtenerDistritos("2", "205");
+$division_territorail_3 = $api_iris->obtenerDistritos("2", "205", false, "todos");
 
 // Si hubo errores durante la consulta los guardamos en un log:
 if (null !== $api_iris->log) {
