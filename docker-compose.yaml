@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   app:
-    image: cgr.dev/chainguard/php:latest-fpm-dev
+    image: php:8.4-fpm-alpine
     restart: unless-stopped
     working_dir: /app
     volumes:
